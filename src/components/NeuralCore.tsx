@@ -27,8 +27,10 @@ function NeuralStructure() {
     const points: THREE.Vector3[] = [];
     nodes.forEach((node, index) => {
       for (let other = index + 1; other < nodes.length; other += 1) {
+        const neighbor = nodes[other];
+        if (!neighbor) continue;
         const a = new THREE.Vector3(...node);
-        const b = new THREE.Vector3(...nodes[other]);
+        const b = new THREE.Vector3(...neighbor);
         if (a.distanceTo(b) < 1.3) points.push(a, b);
       }
     });
